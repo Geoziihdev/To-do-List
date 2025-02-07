@@ -1,10 +1,7 @@
-![Uploading Captura de tela 2025-02-06 001956.png…]()
-
-
+[Captura de tela 2025-02-06 001956](https://github.com/user-attachments/assets/a29b99f6-555d-43a9-8a6f-d49ce9f3de8e)
 # To-Do List
 
-Este é um aplicativo simples de To-Do List criado com React. Ele permite adicionar, visualizar e remover tarefas de forma fácil e intuitiva.
-
+Este é um aplicativo simples de To-Do List criado com React. Ele permite adicionar, visualizar e remover tarefas de forma fácil e intuitiva.!
 ## 📌 Funcionalidades
 
 - Adicionar novas tarefas
