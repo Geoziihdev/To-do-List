@@ -1,0 +1,246 @@
+/* App.css */
+
+/* Fonte e layout */
+.App {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background-color: #f4f4f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Fundo sutil */
+  background-size: cover;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  width: 300px;
+  margin-right: 10px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #61dafb;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #4fa3d1;
+}
+
+/* Ajuste da lista de tarefas */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+li {
+  background-color: #ffecb3;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  width: 220px;
+  transition: transform 0.3s ease, background-color 0.3s;
+}
+
+li:hover {
+  transform: scale(1.05);
+}
+
+li span {
+  flex: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+li button {
+  background-color: #ff4d4f;
+  padding: 6px 12px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+li button:hover {
+  background-color: #f44336;
+}
+
+li.completed {
+  background-color: #dcdfe3;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+li span:hover {
+  text-decoration: underline;
+}
+
+/* Adicionando um botão para limpar todas as tarefas */
+.clear-button {
+  background-color: #ffcc00;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.clear-button:hover {
+  background-color: #ffb300;
+}
+
+/* Layout das colunas para dividir as tarefas em categorias */
+.todo-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.todo-column {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.todo-column h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-list li {
+  background-color: white;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.todo-list li:hover {
+  transform: scale(1.02);
+}
+
+.todo-list li span {
+  flex: 1;
+  cursor: pointer;
+}
+
+.todo-list li button {
+  background-color: #ff4d4f;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.todo-list li button:hover {
+  background-color: #f44336;
+}
+
+.todo-list li.completed {
+  background-color: #e0e0e0;
+}
+
+.todo-list li.completed span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Layout responsivo */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .todo-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .todo-column {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .todo-list {
+    width: 100%;
+  }
+}
