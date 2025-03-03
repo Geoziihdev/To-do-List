@@ -46,6 +46,25 @@ app.delete('/todos/:id', (req, res) => {
   res.json({ message: 'Tarefa removida com sucesso' });
 });
 
+// Rota para atualizar o status de uma tarefa
+app.put('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+
+  // Encontrar a tarefa pelo ID
+  const todo = todos.find(todo => todo.id === parseInt(id));
+
+  if (todo) {
+    // Atualiza o status 'completed'
+    todo.completed = completed;
+
+    // Retorna a tarefa atualizada
+    return res.json(todo);
+  } else {
+    // Se não encontrar a tarefa
+    return res.status(404).json({ message: 'Tarefa não encontrada' });
+  }
+});
 
 // Iniciar o servidor
 app.listen(port, () => {

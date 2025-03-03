@@ -5,6 +5,7 @@ import { FaTrash, FaCheckCircle, FaCircle } from 'react-icons/fa';
 function TodoList() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
+  const [error, setError] = useState(null); // Adicionando o estado de erro
 
   // Carregar todos os todos do backend ao iniciar o componente
   useEffect(() => {
@@ -43,26 +44,29 @@ function TodoList() {
   };
 
   // Alterar o status de conclusão de uma tarefa
-const toggleCompletion = (id) => {
-  // Encontrando a tarefa localmente
-  const todo = todos.find(todo => todo.id === id);
-  
-  // Atualizando o estado local primeiro, para refletir imediatamente a mudança
-  setTodos(todos.map(todo =>
-    todo.id === id ? { ...todo, completed: !todo.completed } : todo
-  ));
+  const toggleCompletion = (id) => {
+    const todo = todos.find(todo => todo.id === id);
+    const updatedTodo = { ...todo, completed: !todo.completed };
 
-  // Atualizando o backend
-  axios.put(`http://localhost:5000/todos/${id}`, { ...todo, completed: !todo.completed })
-    .catch(error => {
-      console.error('Erro ao atualizar a tarefa no backend:', error);
-      // Se algo der errado no backend, podemos reverter o estado
-      setTodos(todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      ));
-    });
-};
+    // Atualizando o estado local primeiro, para refletir imediatamente a mudança
+    setTodos(todos.map(todo =>
+      todo.id === id ? updatedTodo : todo
+    ));
 
+    // Atualizando o backend
+    axios.put(`http://localhost:5000/todos/${id}`, updatedTodo)
+      .then(response => {
+        setError(null); // Limpa qualquer erro anterior
+      })
+      .catch(error => {
+        console.error('Erro ao atualizar a tarefa no backend:', error);
+        setError('Erro ao atualizar o status da tarefa.');
+        // Se algo der errado no backend, revertendo o estado
+        setTodos(todos.map(todo =>
+          todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        ));
+      });
+  };
 
   // Limpar todas as tarefas
   const clearAll = () => {
@@ -79,6 +83,9 @@ const toggleCompletion = (id) => {
 
   return (
     <div>
+      {/* Exibir mensagem de erro */}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
       <input
         type="text"
         value={newTodo}
